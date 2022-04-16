@@ -66,7 +66,7 @@ app.get("/api/signup", (req, res) => {
 
 })
 
-app.get("/api/login", (req, res) =>  {
+app.post("/api/login", (req, res) =>  {
     var userEmail = req.body.userEmail;
     var userPassword = req.body.userPassword;
     const chkUser = () =>{
