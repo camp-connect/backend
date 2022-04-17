@@ -84,7 +84,7 @@ app.get("/api/login", (req, res) =>  {
                     return res.status(200).json(result.rows[0]);
                 }
                 else{
-                    return res.status(401).json({msg: "invalid credentials"});
+                    return res.status(200).json({msg: "invalid credentials"});
                 }
             }
         })
