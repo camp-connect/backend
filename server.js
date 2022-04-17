@@ -69,11 +69,11 @@ app.post("/api/signup", (req, res) => {
 
 
 //login
-app.get("/api/login", (req, res) =>  {
+app.post("/api/login", (req, res) =>  {
     var userEmail = req.body.userEmail;
     var userPassword = req.body.userPassword;
     const chkUser = async () =>{
-        const q = `select email, password from students where email = '${userEmail}' and password = '${userPassword}';`
+        const q = `select email, roll, roomno, hostel, name from students where email = '${userEmail}' and password = '${userPassword}';`
         await pool.query(q, [], (err, result) =>{
             if(err){
                 console.error(err.message);
@@ -84,7 +84,7 @@ app.get("/api/login", (req, res) =>  {
                     return res.status(200).json(result.rows[0]);
                 }
                 else{
-                    return res.status(200).json({msg: "invalid credentials"});
+                    return res.status(401).json({msg: "invalid credentials"});
                 }
             }
         })
