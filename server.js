@@ -57,7 +57,7 @@ app.post("/api/signup", (req, res) => {
     pool.query(ins, [], (err, result) =>{
         if (err) {
             console.error(err.message);
-            res.status(500).json({status: false});
+            res.status(400).json({status: false});
         }
         else{
             res.status(200).json({status: true});
@@ -77,14 +77,14 @@ app.get("/api/login", (req, res) =>  {
         await pool.query(q, [], (err, result) =>{
             if(err){
                 console.error(err.message);
-                return res.status(500).json({msg: "error"});
+                return res.status(400).json({msg: "error"});
             }
             else{
                 if(result.rowCount != 0){
                     return res.status(200).json(result.rows[0]);
                 }
                 else{
-                    return res.status(300).json({msg: "invalid credentials"});
+                    return res.status(203).json({msg: "invalid credentials"});
                 }
             }
         })
