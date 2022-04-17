@@ -45,17 +45,24 @@ pool.query(student, [], (err, result) => {
 
 const admin = `CREATE TABLE IF NOT EXISTS admin(
     email varchar(30) PRIMARY KEY,
-    passwords varchar(30) NOT NULL,
+    password varchar(30) NOT NULL,
     adminName varchar(30) NOT NULL,
     empID varchar(10) NOT NULL,
     personalContact varchar(10) NOT NULL);
 `;
   
+pool.query(admin, [], (err, result) => {
+    if (err) {
+        return console.error(err.message);
+      }
+    console.log("Successful creation of the 'admin' table");
+});
+
 
 //APIs
 
-//signup
-app.post("/api/signup", (req, res) => {
+//signup student
+app.post("/api/signup/student", (req, res) => {
     var userEmail = req.body.userEmail;
     var userPassword = req.body.userPassword;
     var name = req.body.name;
@@ -80,8 +87,8 @@ app.post("/api/signup", (req, res) => {
 })
 
 
-//login
-app.post("/api/login", (req, res) =>  {
+//login student
+app.post("/api/login/student", (req, res) =>  {
     var userEmail = req.body.userEmail;
     var userPassword = req.body.userPassword;
     const chkUser = async () =>{
@@ -105,8 +112,54 @@ app.post("/api/login", (req, res) =>  {
     chkUser();
 })
 
+//////////////////////////////////////////////////////////////////////////////////////////////////
 
-//
+//signup admin
+app.post("/api/signup/admin", (req, res) => {
+    var userEmail = req.body.userEmail;
+    var userPassword = req.body.userPassword;
+    var adminName = req.body.adminName;
+    var empID = req.body.empID;
+    var personalContact = req.body.personalContact;
 
+    const ins = `insert into admin (adminName, password, email, empID, personalContact) values('${adminName}', '${userPassword}', '${userEmail}', '${empID}', '${personalContact}');`;
+    pool.query(ins, [], (err, result) =>{
+        if (err) {
+            console.error(err.message);
+            res.status(400).json({status: false});
+        }
+        else{
+            res.status(200).json({status: true});
+        }
+        
+    })
+
+})
+
+
+//login admin
+app.post("/api/login/admin", (req, res) =>  {
+    var userEmail = req.body.userEmail;
+    var userPassword = req.body.userPassword;
+    const chkUser = async () =>{
+        const q = `select adminName, email, empID, personalContact  from admin where email = '${userEmail}' and password = '${userPassword}';`
+        await pool.query(q, [], (err, result) =>{
+            if(err){
+                console.error(err.message);
+                return res.status(500).json({msg: "error"});
+            }
+            else{
+                if(result.rowCount != 0){
+                    return res.status(200).json(result.rows[0]);
+                }
+                else{
+                    return res.status(401).json({msg: "invalid credentials"});
+                }
+            }
+        })
+    }
+    
+    chkUser();
+})
 
 app.listen(port);       
