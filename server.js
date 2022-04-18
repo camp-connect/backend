@@ -26,14 +26,14 @@ app.use("/", indexrouter);
 //database
 
 const student = `CREATE TABLE IF NOT EXISTS students(
-    name varchar(50) NOT NULL,
-    roll char(12) NOT NULL,
-    roomNo varchar(3) NOT NULL,
-    password varchar(50) NOT NULL,
-    email varchar(30) PRIMARY KEY,
-    personalContact varchar(10) NOT NULL,
-    parentsContact varchar(10) NOT NULL,
-    mentor varchar(30) NOT NULL);
+    name varchar(100) NOT NULL,
+    roll char(30) NOT NULL,
+    roomNo varchar(10) NOT NULL,
+    password varchar(30) NOT NULL,
+    email varchar(100) PRIMARY KEY,
+    personalContact varchar(12) NOT NULL,
+    parentsContact varchar(12) NOT NULL,
+    mentor varchar(50) NOT NULL);
 `;
 
 pool.query(student, [], (err, result) => {
@@ -44,11 +44,11 @@ pool.query(student, [], (err, result) => {
 });
 
 const admin = `CREATE TABLE IF NOT EXISTS admin(
-    email varchar(30) PRIMARY KEY,
+    email varchar(100) PRIMARY KEY,
     password varchar(30) NOT NULL,
-    adminName varchar(30) NOT NULL,
-    empID varchar(10) NOT NULL,
-    personalContact varchar(10) NOT NULL);
+    adminName varchar(100) NOT NULL,
+    empID varchar(50) NOT NULL,
+    personalContact varchar(20) NOT NULL);
 `;
   
 pool.query(admin, [], (err, result) => {
