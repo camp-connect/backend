@@ -27,117 +27,117 @@ app.use("/", indexrouter);
 //database
 
 //student table
-// const student = `CREATE TABLE IF NOT EXISTS students(
-//     name varchar(100) NOT NULL,
-//     roll varchar(30) NOT NULL,
-//     roomNo varchar(10) NOT NULL,
-//     password varchar(30) NOT NULL,
-//     email varchar(100) PRIMARY KEY,
-//     personalContact varchar(12) NOT NULL,
-//     parentsContact varchar(12) NOT NULL,
-//     mentor varchar(50) NOT NULL,
-//     approved boolean NOT NULL DEFAULT FALSE);
-// `;
+const student = `CREATE TABLE IF NOT EXISTS students(
+    name varchar(100) NOT NULL,
+    roll varchar(30) NOT NULL,
+    roomNo varchar(10) NOT NULL,
+    password varchar(30) NOT NULL,
+    email varchar(100) PRIMARY KEY,
+    personalContact varchar(12) NOT NULL,
+    parentsContact varchar(12) NOT NULL,
+    mentor varchar(50) NOT NULL,
+    approved boolean NOT NULL DEFAULT FALSE);
+`;
 
-// pool.query(student, [], (err, result) => {
-//     if (err) {
-//         return console.error(err.message);
-//     }
-//     console.log("Successful creation of the 'student' table");
-// });
+pool.query(student, [], (err, result) => {
+    if (err) {
+        return console.error(err.message);
+    }
+    console.log("Successful creation of the 'student' table");
+});
 
 
 // //admin table
-// const admin = `CREATE TABLE IF NOT EXISTS admin(
-//     email varchar(100) PRIMARY KEY,
-//     password varchar(30) NOT NULL,
-//     adminName varchar(100) NOT NULL,
-//     empID varchar(50) NOT NULL,
-//     personalContact varchar(20) NOT NULL);
-// `;
+const admin = `CREATE TABLE IF NOT EXISTS admin(
+    email varchar(100) PRIMARY KEY,
+    password varchar(30) NOT NULL,
+    adminName varchar(100) NOT NULL,
+    empID varchar(50) NOT NULL,
+    personalContact varchar(20) NOT NULL);
+`;
   
-// pool.query(admin, [], (err, result) => {
-//     if (err) {
-//         return console.error(err.message);
-//       }
-//     console.log("Successful creation of the 'admin' table");
-// });
+pool.query(admin, [], (err, result) => {
+    if (err) {
+        return console.error(err.message);
+      }
+    console.log("Successful creation of the 'admin' table");
+});
 
 
 // //hostel table
-// const hostel = `CREATE TABLE IF NOT EXISTS hostel(
-//     name varchar(100) NOT NULL,
-//     roomNO varchar(10) NOT NULL,
-//     hostelNO varchar(2) NOT NULL,
-//     roll varchar(30) PRIMARY KEY
-// );`;
+const hostel = `CREATE TABLE IF NOT EXISTS hostel(
+    name varchar(100) NOT NULL,
+    roomNO varchar(10) NOT NULL,
+    hostelNO varchar(2) NOT NULL,
+    roll varchar(30) PRIMARY KEY
+);`;
 
-// pool.query(hostel, [], (err, result) => {
-//     if (err) {
-//         return console.error(err.message);
-//       }
-//     console.log("Successful creation of the 'hostel' table");
-// });
+pool.query(hostel, [], (err, result) => {
+    if (err) {
+        return console.error(err.message);
+      }
+    console.log("Successful creation of the 'hostel' table");
+});
 
 
 // //outpass table
 
-// const outpass = `CREATE TABLE IF NOT EXISTS outpass(
-//     outID serial PRIMARY KEY,
-//     purpose varchar(200) NOT NULL,
-//     outTime Time NOT NULL,
-//     inTime Time NOT NULL,
-//     outDate Date NOT NULL,
-//     inDate Date NOT NULL,
-//     Name Varchar(100) NOT NULL,
-//     roll varchar(30) NOT NULL
+const outpass = `CREATE TABLE IF NOT EXISTS outpass(
+    outID serial PRIMARY KEY,
+    purpose varchar(200) NOT NULL,
+    outTime Time NOT NULL,
+    inTime Time NOT NULL,
+    outDate Date NOT NULL,
+    inDate Date NOT NULL,
+    Name Varchar(100) NOT NULL,
+    roll varchar(30) NOT NULL
 
-// );`;
+);`;
 
-// pool.query(outpass, [], (err, result) => {
-//     if (err) {
-//         return console.error(err.message);
-//     }
-//     console.log("Successful creation of the 'outpass' table");
-// })
+pool.query(outpass, [], (err, result) => {
+    if (err) {
+        return console.error(err.message);
+    }
+    console.log("Successful creation of the 'outpass' table");
+})
 
 
 // //isue table
 
-// const issue = `CREATE TABLE IF NOT EXISTS issue(
-//     issueid serial PRIMARY KEY,
-//     name varchar(100) NOT NULL,
-//     roll varchar(10) NOT NULL,
-//     roomno varchar(10) NOT NULL,
-//     personalContact varchar(20) NOT NULL,
-//     issue varchar(200) NOT NULL
-// );`;
+const issue = `CREATE TABLE IF NOT EXISTS issue(
+    issueid serial PRIMARY KEY,
+    name varchar(100) NOT NULL,
+    roll varchar(10) NOT NULL,
+    roomno varchar(10) NOT NULL,
+    personalContact varchar(20) NOT NULL,
+    issue varchar(200) NOT NULL
+);`;
 
-// pool.query(issue, [], (err, result) => {
-//     if (err) {
-//         return console.error(err.message);
-//     }
-//     console.log("Successful creation of the 'issue' table");
-// })
+pool.query(issue, [], (err, result) => {
+    if (err) {
+        return console.error(err.message);
+    }
+    console.log("Successful creation of the 'issue' table");
+})
 
 
 // //notice
 
-// const notice = `CREATE TABLE IF NOT EXISTS notice(
-//     adminid varchar(10),
-//     roll varchar(10) ,
-//     time time NOT NULL,
-//     date date NOT NULL,
-//     notice varchar(200) NOT NULL,
-//     PRIMARY KEY(adminid, roll)
-// );`;
+const notice = `CREATE TABLE IF NOT EXISTS notice(
+    adminid varchar(10),
+    roll varchar(10) ,
+    time time NOT NULL,
+    date date NOT NULL,
+    notice varchar(200) NOT NULL,
+    PRIMARY KEY(adminid, roll)
+);`;
 
-// pool.query(notice, [], (err, result) => {
-//     if (err) {
-//         return console.error(err.message);
-//     }
-//     console.log("Successful creation of the 'notice' table");
-// })
+pool.query(notice, [], (err, result) => {
+    if (err) {
+        return console.error(err.message);
+    }
+    console.log("Successful creation of the 'notice' table");
+})
 
 //APIs
 
