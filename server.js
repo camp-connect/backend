@@ -246,7 +246,7 @@ app.post("/api/login/admin", (req, res) =>  {
 ////////////////////////////////////////////////////
 
 // vereification
-app.post("api/verify", (req, res) =>{
+app.post("/api/verify", (req, res) =>{
     var userEmail = res.body.userEmail;
     
     const verify = async ()=>{
