@@ -90,6 +90,7 @@ app.use("/", indexrouter);
 //     outDate Date NOT NULL,
 //     Name Varchar(100) NOT NULL,
 //     email varchar(30) NOT NULL,
+//     parentsPermission boolean NOT NULL DEFAULT FALSE,
 //     verified boolean NOT NULL DEFAULT FALSE
 // );`;
 
@@ -287,10 +288,10 @@ app.get("/api/students/unverified", (req, res) =>{
 ///////////////////////////////////////////////////////
 
 app.post("/api/outpass", (req, res) => {
-    const {purpose, outTime, inTime, outDate, userName, userEmail} = req.body;
+    const {purpose, outTime, inTime, outDate, userName, userEmail, parentsPermission} = req.body;
 
     const outpass = async () =>{
-        const o = `insert into outpass (purpose, outTime, inTime, outDate, name, email) values('${purpose}', '${outTime}', '${inTime}', '${outDate}', '${userName}', '${userEmail}');`
+        const o = `insert into outpass (purpose, outTime, inTime, outDate, name, email, parentsPermission) values('${purpose}', '${outTime}', '${inTime}', '${outDate}', '${userName}', '${userEmail}', '${parentsPermission}');`
 
         pool.query(o, [], (err, result) => {
             if(err){
@@ -335,6 +336,20 @@ app.put("/api/verify/outpass", (req, res) =>{
 /////////////////////////////////////////////////////////////
 
 //outstrength
+
+app.get("/api/outpass/strength", (req, res) =>{
+    const q = `select outid, purpose, outtime, intime, outdate, name, email, parentspermission from outpass where verified = false`;
+
+    pool.query(q, [], (err, result) =>{
+        if(err){
+            console.error(err.message);
+            return res.status(500).json({msg: "error"});
+        }
+        else{
+            return res.status(200).json(result.rows);
+        }
+    })
+})
 
 
 app.listen(port);       
