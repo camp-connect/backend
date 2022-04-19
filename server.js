@@ -27,117 +27,116 @@ app.use("/", indexrouter);
 //database
 
 //student table
-const student = `CREATE TABLE IF NOT EXISTS students(
-    name varchar(100) NOT NULL,
-    roll varchar(30) NOT NULL,
-    roomNo varchar(10) NOT NULL,
-    password varchar(30) NOT NULL,
-    email varchar(100) PRIMARY KEY,
-    personalContact varchar(12) NOT NULL,
-    parentsContact varchar(12) NOT NULL,
-    mentor varchar(50) NOT NULL,
-    approved boolean NOT NULL DEFAULT FALSE);
-`;
+// const student = `CREATE TABLE IF NOT EXISTS students(
+//     name varchar(100) NOT NULL,
+//     roll varchar(30) NOT NULL,
+//     roomNo varchar(10) NOT NULL,
+//     password varchar(30) NOT NULL,
+//     email varchar(100) PRIMARY KEY,
+//     personalContact varchar(12) NOT NULL,
+//     parentsContact varchar(12) NOT NULL,
+//     mentor varchar(50) NOT NULL,
+//     approved boolean NOT NULL DEFAULT FALSE);
+// `;
 
-pool.query(student, [], (err, result) => {
-    if (err) {
-        return console.error(err.message);
-    }
-    console.log("Successful creation of the 'student' table");
-});
+// pool.query(student, [], (err, result) => {
+//     if (err) {
+//         return console.error(err.message);
+//     }
+//     console.log("Successful creation of the 'student' table");
+// });
 
 
-// //admin table
-const admin = `CREATE TABLE IF NOT EXISTS admin(
-    email varchar(100) PRIMARY KEY,
-    password varchar(30) NOT NULL,
-    adminName varchar(100) NOT NULL,
-    empID varchar(50) NOT NULL,
-    personalContact varchar(20) NOT NULL);
-`;
+// // //admin table
+// const admin = `CREATE TABLE IF NOT EXISTS admin(
+//     email varchar(100) PRIMARY KEY,
+//     password varchar(30) NOT NULL,
+//     adminName varchar(100) NOT NULL,
+//     empID varchar(50) NOT NULL,
+//     personalContact varchar(20) NOT NULL);
+// `;
   
-pool.query(admin, [], (err, result) => {
-    if (err) {
-        return console.error(err.message);
-      }
-    console.log("Successful creation of the 'admin' table");
-});
+// pool.query(admin, [], (err, result) => {
+//     if (err) {
+//         return console.error(err.message);
+//       }
+//     console.log("Successful creation of the 'admin' table");
+// });
 
 
-// //hostel table
-const hostel = `CREATE TABLE IF NOT EXISTS hostel(
-    name varchar(100) NOT NULL,
-    roomNO varchar(10) NOT NULL,
-    hostelNO varchar(2) NOT NULL,
-    roll varchar(30) PRIMARY KEY
-);`;
+// // //hostel table
+// const hostel = `CREATE TABLE IF NOT EXISTS hostel(
+//     name varchar(100) NOT NULL,
+//     roomNO varchar(10) NOT NULL,
+//     hostelNO varchar(2) NOT NULL,
+//     roll varchar(30) PRIMARY KEY
+// );`;
 
-pool.query(hostel, [], (err, result) => {
-    if (err) {
-        return console.error(err.message);
-      }
-    console.log("Successful creation of the 'hostel' table");
-});
-
-
-// //outpass table
-
-const outpass = `CREATE TABLE IF NOT EXISTS outpass(
-    outID serial PRIMARY KEY,
-    purpose varchar(200) NOT NULL,
-    outTime Time NOT NULL,
-    inTime Time NOT NULL,
-    outDate Date NOT NULL,
-    inDate Date NOT NULL,
-    Name Varchar(100) NOT NULL,
-    roll varchar(30) NOT NULL
-
-);`;
-
-pool.query(outpass, [], (err, result) => {
-    if (err) {
-        return console.error(err.message);
-    }
-    console.log("Successful creation of the 'outpass' table");
-})
+// pool.query(hostel, [], (err, result) => {
+//     if (err) {
+//         return console.error(err.message);
+//       }
+//     console.log("Successful creation of the 'hostel' table");
+// });
 
 
-// //isue table
+// // //outpass table
 
-const issue = `CREATE TABLE IF NOT EXISTS issue(
-    issueid serial PRIMARY KEY,
-    name varchar(100) NOT NULL,
-    roll varchar(10) NOT NULL,
-    roomno varchar(10) NOT NULL,
-    personalContact varchar(20) NOT NULL,
-    issue varchar(200) NOT NULL
-);`;
+// const outpass = `CREATE TABLE IF NOT EXISTS outpass(
+//     outID serial PRIMARY KEY,
+//     purpose varchar(200) NOT NULL,
+//     outTime Time NOT NULL,
+//     inTime Time NOT NULL,
+//     outDate Date NOT NULL,
+//     Name Varchar(100) NOT NULL,
+//     email varchar(30) NOT NULL,
+//     verified boolean NOT NULL DEFAULT FALSE
+// );`;
 
-pool.query(issue, [], (err, result) => {
-    if (err) {
-        return console.error(err.message);
-    }
-    console.log("Successful creation of the 'issue' table");
-})
+// pool.query(outpass, [], (err, result) => {
+//     if (err) {
+//         return console.error(err.message);
+//     }
+//     console.log("Successful creation of the 'outpass' table");
+// })
 
 
-// //notice
+// // //isue table
 
-const notice = `CREATE TABLE IF NOT EXISTS notice(
-    adminid varchar(10),
-    roll varchar(10) ,
-    time time NOT NULL,
-    date date NOT NULL,
-    notice varchar(200) NOT NULL,
-    PRIMARY KEY(adminid, roll)
-);`;
+// const issue = `CREATE TABLE IF NOT EXISTS issue(
+//     issueid serial PRIMARY KEY,
+//     name varchar(100) NOT NULL,
+//     roll varchar(10) NOT NULL,
+//     roomno varchar(10) NOT NULL,
+//     personalContact varchar(20) NOT NULL,
+//     issue varchar(200) NOT NULL
+// );`;
 
-pool.query(notice, [], (err, result) => {
-    if (err) {
-        return console.error(err.message);
-    }
-    console.log("Successful creation of the 'notice' table");
-})
+// pool.query(issue, [], (err, result) => {
+//     if (err) {
+//         return console.error(err.message);
+//     }
+//     console.log("Successful creation of the 'issue' table");
+// })
+
+
+// // //notice
+
+// const notice = `CREATE TABLE IF NOT EXISTS notice(
+//     adminid varchar(10),
+//     roll varchar(10) ,
+//     time time NOT NULL,
+//     date date NOT NULL,
+//     notice varchar(200) NOT NULL,
+//     PRIMARY KEY(adminid, roll)
+// );`;
+
+// pool.query(notice, [], (err, result) => {
+//     if (err) {
+//         return console.error(err.message);
+//     }
+//     console.log("Successful creation of the 'notice' table");
+// })
 
 //APIs
 
@@ -245,15 +244,17 @@ app.post("/api/login/admin", (req, res) =>  {
 
 ////////////////////////////////////////////////////
 
-// vereification
-app.post("/api/verify", (req, res) =>{
+// vereification student
+app.put("/api/verify", (req, res) =>{
 
     var userEmail = req.body.userEmail;
     console.log(userEmail)
     
     const verify = async ()=>{
-        const q = `update students set approved = true where email = '${userEmail}';`
-        await pool.query(q, [], (err, result) =>{
+        const v = `UPDATE students SET approved = true WHERE email = '${userEmail}';`
+        console.log(v)
+        pool.query(v, [], (err, result) =>{
+            console.log(result)
             if(err){
                 console.error(err.message);
                 return res.status(500).json({msg: "error"});
@@ -263,5 +264,77 @@ app.post("/api/verify", (req, res) =>{
             }
         })
     }
+    verify();
 })
+////////////////////////////////
+//unverified students
+
+app.get("/api/students/unverified", (req, res) =>{
+    const q = `select name, roll, roomNo, email, personalContact, parentsContact, mentor  from students where approved = false;`
+
+    pool.query(q, [], (err, result) =>{
+        if(err){
+            console.error(err.message);
+            return res.status(500).json({msg: "error"});
+        }
+        else{
+            return res.status(200).json(result.rows);
+        }
+    })
+})
+
+
+///////////////////////////////////////////////////////
+
+app.post("/api/outpass", (req, res) => {
+    const {purpose, outTime, inTime, outDate, userName, userEmail} = req.body;
+
+    const outpass = async () =>{
+        const o = `insert into outpass (purpose, outTime, inTime, outDate, name, email) values('${purpose}', '${outTime}', '${inTime}', '${outDate}', '${userName}', '${userEmail}');`
+
+        pool.query(o, [], (err, result) => {
+            if(err){
+                console.error(err.message);
+                return res.status(500).json({msg: "error"});
+            }
+            else{
+                return res.status(200).json({msg: "outpass added"});
+            }
+        })
+    }
+
+    outpass();
+
+})
+
+
+// outpass verification
+
+app.put("/api/verify/outpass", (req, res) =>{
+
+    var outId = req.body.outId;
+    console.log(outId)
+    
+    const verify = async ()=>{
+        const v = `UPDATE outpass SET verified = true WHERE outid = '${outId}';`
+        console.log(v)
+        pool.query(v, [], (err, result) =>{
+            console.log(result)
+            if(err){
+                console.error(err.message);
+                return res.status(500).json({msg: "error"});
+            }
+            else{
+                return res.status(200).json({msg: "outpass approved"});
+            }
+        })
+    }
+    verify();
+})
+
+/////////////////////////////////////////////////////////////
+
+//outstrength
+
+
 app.listen(port);       
