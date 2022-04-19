@@ -250,7 +250,7 @@ app.post("/api/verify", (req, res) =>{
     var userEmail = res.body.userEmail;
     
     const verify = async ()=>{
-        const q = `update table student set approved = true where email = "${userEmail}";`
+        const q = `update table students set approved = true where email = "${userEmail}";`
         await pool.query(q, [], (err, result) =>{
             if(err){
                 console.error(err.message);
