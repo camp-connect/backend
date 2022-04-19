@@ -247,10 +247,12 @@ app.post("/api/login/admin", (req, res) =>  {
 
 // vereification
 app.post("/api/verify", (req, res) =>{
-    var userEmail = res.body.userEmail;
+
+    var userEmail = req.body.userEmail;
+    console.log(userEmail)
     
     const verify = async ()=>{
-        const q = `update table students set approved = true where email = "${userEmail}";`
+        const q = `update students set approved = true where email = '${userEmail}';`
         await pool.query(q, [], (err, result) =>{
             if(err){
                 console.error(err.message);
