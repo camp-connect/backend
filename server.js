@@ -285,6 +285,21 @@ app.get("/api/students/unverified", (req, res) =>{
 })
 
 
+//verified students
+app.get("/api/students/verified", (req, res) =>{
+    const q = `select name, roll, roomNo, email, personalContact, parentsContact, mentor  from students where approved = true;`
+
+    pool.query(q, [], (err, result) =>{
+        if(err){
+            console.error(err.message);
+            return res.status(500).json({msg: "error"});
+        }
+        else{
+            return res.status(200).json(result.rows);
+        }
+    })
+})
+
 ///////////////////////////////////////////////////////
 
 app.post("/api/outpass", (req, res) => {
@@ -349,6 +364,31 @@ app.get("/api/outpass/strength", (req, res) =>{
             return res.status(200).json(result.rows);
         }
     })
+})
+
+
+/////////////////////////////////////////////////////////////////
+
+//notice
+
+app.post("/api/notice", (req, res) =>{
+    const {adminId, roll, time, date, notice} = req.body;
+
+    const sendNotice = () => {
+        const n = `insert into notice (adminId, roll, time, date, notice) values('${adminId}', '${roll}', '${time}', '${date}', '${notice}');`;
+
+        pool.query(n, [], (err, result) =>{
+            if(err){
+                console.error(err.message);
+                return res.status(500).json({msg: "error"});
+            }
+            else{
+                return res.status(200).json({msg: "notice sent"});
+            }
+        })
+    }
+
+    sendNotice();
 })
 
 
