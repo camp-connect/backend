@@ -172,7 +172,7 @@ app.post("/api/login/student", (req, res) =>  {
     var userEmail = req.body.userEmail;
     var userPassword = req.body.userPassword;
     const chkUser = async () =>{
-        const q = `select name, roll, roomNo, email, personalContact, parentsContact, mentor  from students where email = '${userEmail}' and password = '${userPassword}';`
+        const q = `select name, roll, roomNo, email, personalContact, parentsContact, mentor, approved  from students where email = '${userEmail}' and password = '${userPassword}';`
         await pool.query(q, [], (err, result) =>{
             if(err){
                 console.error(err.message);
