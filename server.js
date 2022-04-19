@@ -222,13 +222,14 @@ app.post("/api/login/admin", (req, res) =>  {
     var userEmail = req.body.userEmail;
     var userPassword = req.body.userPassword;
     const chkUser = async () =>{
-        const q = `select adminName, email, empID, personalContact  from admin where email = '${userEmail}' and password = '${userPassword} and ';`
-        await pool.query(q, [], (err, result) =>{
+        const q = `select adminName, email, empID, personalContact  from admin where email = '${userEmail}' and password = '${userPassword}';`
+        pool.query(q, [], (err, result) =>{
             if(err){
                 console.error(err.message);
                 return res.status(500).json({msg: "error"});
             }
             else{
+                console.log(result);
                 if(result.rowCount != 0){
                     return res.status(200).json(result.rows[0]);
                 }
