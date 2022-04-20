@@ -391,5 +391,28 @@ app.post("/api/notice", (req, res) =>{
     sendNotice();
 })
 
+/////////////////////////////////////////////////////////////////
+
+//issue
+
+app.post("/api/issue", (req, res) =>{
+    const {UserName , roll, roomno, personalcontact, issue} = req.body;
+
+    const sendIssue = () => {
+        const n = `insert into issue (name , roll, roomno, personalcontact, issue) values('${userName}', '${roll}', '${roomno}', '${date}', '${issue}');`;
+
+        pool.query(n, [], (err, result) =>{
+            if(err){
+                console.error(err.message);
+                return res.status(500).json({msg: "error"});
+            }
+            else{
+                return res.status(200).json({msg: "issue sent"});
+            }
+        })
+    }
+
+    sendIssue();
+})
 
 app.listen(port);       
