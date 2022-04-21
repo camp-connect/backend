@@ -396,10 +396,10 @@ app.post("/api/notice", (req, res) =>{
 //issue
 
 app.post("/api/issue", (req, res) =>{
-    const {UserName , roll, roomno, personalcontact, issue} = req.body;
+    const {userName , roll, roomno, personalcontact, issue} = req.body;
 
     const sendIssue = () => {
-        const n = `insert into issue (name , roll, roomno, personalcontact, issue) values('${userName}', '${roll}', '${roomno}', '${date}', '${issue}');`;
+        const n = `insert into issue (name , roll, roomno, personalcontact, issue) values('${userName}', '${roll}', '${roomno}', '${personalcontact}', '${issue}');`;
 
         pool.query(n, [], (err, result) =>{
             if(err){
@@ -413,6 +413,41 @@ app.post("/api/issue", (req, res) =>{
     }
 
     sendIssue();
+})
+
+//display issue
+app.get("/api/issue/list", (req, res) =>{
+    const q = `select name , roll, roomno, personalcontact, issue from issue;`
+    pool.query(q, (err, result) =>{
+        if(err){
+            console.error(err.message);
+            return res.status(500).json({msg: "error"});
+        }
+        else{
+            return res.status(200).json(result.rows);
+        }
+    })
+})
+
+// issue resolved
+
+app.delete("/api/issue/delete", (req, res) =>{
+    const {issueID} = req.body;
+
+    const resolved = ()=> {
+        const r = `delete from issue where issueid = ${issueID};`;
+
+        pool.query(r,  (err, result) =>{
+            if(err){
+                console.error(err.message);
+                return res.status(500).json({msg: "error"});
+            }
+            else{
+                return res.status(200).json({msg: "issue deleted"});
+            }
+        })
+    }
+    resolved();
 })
 
 app.listen(port);       
