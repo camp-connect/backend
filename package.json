@@ -10,17 +10,11 @@
   "author": "camp-connect",
   "license": "ISC",
   "dependencies": {
-    "@mikro-orm/core": "^5.1.2",
-    "@mikro-orm/postgresql": "^5.1.2",
-    "@supabase/supabase-js": "^1.33.3",
     "body-parser": "^1.19.2",
-    "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
-    "mysql2": "^2.3.3",
     "nodemon": "^2.0.15",
     "pg": "^8.7.3",
-    "pg-hstore": "^2.3.4",
-    "sequelize": "^6.18.0"
+    "pg-hstore": "^2.3.4"
   }
 }
