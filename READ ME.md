@@ -21,6 +21,7 @@ Current heroku deployment : https://camp-connect-backend.herokuapp.com/``api End
 
 ---
 
+
 ## Setup on localhost
 
 ````markdown
@@ -29,6 +30,10 @@ Current heroku deployment : https://camp-connect-backend.herokuapp.com/``api End
 If yarn is not installed on system install yarn package manager using `npm install --global yarn` and then install dependancies using yarn
 ````
 
+````markdown
+To run the server use `yarn dev` to start server in development mode.
+The server will run at ``http://localhost:3000``
+````
 
 
 ---
