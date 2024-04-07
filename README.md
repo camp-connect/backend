@@ -6,7 +6,7 @@
 
 Backend for camp-connect application based on Node js + Elephent SQL (Cloud base postgresql database) designed to be run completly free from local host.
 
-Current heroku deployment : https://camp-connect-backend.herokuapp.com/``api Endpoint``
+Current heroku deployment : https://camp-connect-backend.herokuapp.com/``api Endpoint``.
 
 
 
